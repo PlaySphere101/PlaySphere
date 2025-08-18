@@ -1,0 +1,427 @@
+:root{
+  --bg: #0F0F0F;
+  --card: #161616;
+  --accent1: #00FFFF;
+  --accent2: #FF00FF;
+  --accent3: #00FF9F;
+  --text: #EBE8DB;
+  --muted: #9a9a9a;
+  --glass: rgba(255,255,255,0.03);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background:var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* ==== Logo Link ==== */
+.brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+/* ==== Logo Image ==== */
+.logo-img {
+  height: auto;       /* Adjust for size */
+  width: 150px;
+  margin-left:50px;
+  margin-top:-10px;
+/*  display: block;*/
+  filter: drop-shadow(0 0 8px var(--accent1))
+          drop-shadow(0 0 12px var(--accent2));
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+/* Hover Effect */
+.logo-img:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 10px var(--accent1))
+          drop-shadow(0 0 18px var(--accent2))
+          drop-shadow(0 0 22px var(--hover));
+}
+
+
+#search-input {
+  border: 2px solid #FFFFFF; /* white border */
+  border-radius: 6px;        /* optional: rounded corners */
+  padding: 6px 10px;         /* spacing inside input */
+  background-color: var(--bg); /* match page background */
+  color: #FFFFFF;             /* white text */
+  outline: none;              /* remove default focus outline */
+}
+
+#search-input::placeholder {
+  color: #FFFFFF; /* make placeholder text white too */
+  opacity: 0.7;   /* slightly transparent for readability */
+}
+
+#search-input:focus {
+  border-color: #00FFFF; /* optional: cyan border on focus */
+}
+.nav-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 18px;
+}
+.brand{
+  font-weight:700;
+  font-size:20px;
+  letter-spacing:1px;
+  color:var(--accent1);
+}
+
+/* controls */
+.nav-controls{display:flex;align-items:center;gap:10px}
+.icon-btn{
+  background:var(--glass);
+  border:1px solid rgba(255,255,255,0.03);
+  color:var(--text);
+  padding:8px 10px;
+  border-radius:8px;
+  cursor:pointer;
+}
+main {
+  padding-top: 100px; /* Equal to navbar+category height */
+}
+.modal-content {
+  margin-top: var(--navbar-height, 70px);
+}
+.game-iframe {
+  margin-top: 60px; /* or match the fixed nav height */
+}
+
+/* Category bar row (if separate) */
+.category-bar {
+  background-color: #0F0F0F; /* Solid */
+  position: sticky;
+  top: 50px; /* Adjust if you have another bar above it */
+  z-index: 999;
+}
+#fullscreen-btn {
+  background: var(--accent1);
+  border: none;
+  color: #000;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 4px 10px;
+  margin-left: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#fullscreen-btn:hover {
+  background: var(--accent3);
+}
+
+.category-bar::-webkit-scrollbar{display:none}
+.navbar {
+  display: flex;
+  flex-direction: column;
+}
+
+.category-bar {
+  position: sticky;
+  top: 0; /* distance from top of viewport */
+  z-index: 1000;
+  background: #0F0F0F; /* same as navbar background */
+  padding: 8px 0;
+}
+
+
+.cat-btn{
+  background:transparent;
+  border:1px solid rgba(255,255,255,0.03);
+  padding:8px 12px;
+  border-radius:999px;
+  cursor:pointer;
+  color:var(--muted);
+  white-space:nowrap;
+}
+.cat-btn.active{
+  color:var(--bg);
+  background:linear-gradient(90deg,var(--accent1),var(--accent2));
+  border:none;
+}
+
+/* GRID */
+.game-card {
+  width: 180px;
+  display: inline-block;
+  margin: 10px;
+  background: #111;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.game-card img {
+  width: 100%;
+  height: 120px; /* Fixed height */
+  object-fit: cover; /* Crop & center */
+  display: block;
+}
+
+.game-card h3 {
+  font-size: 14px;
+  margin: 8px 0;
+}
+
+.game-card button {
+  display: block;
+  width: 90%;
+  margin: 8px auto;
+  padding: 6px 0;
+  border: none;
+  background: #00FF9F;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.game-card button:hover {
+  background: #00cc7a;
+}
+/* Ensure modal covers everything */
+.modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.9); /* dark overlay */
+  z-index: 2000; /* higher than navbar & side panel */
+  display: none; /* hidden by default */
+}
+
+.modal[aria-hidden="false"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.95);
+  z-index: 99999 !important;   /* 🚀 force higher than anything */
+  display: none;
+}
+
+.modal-content {
+  position: relative;
+  background-color: #0F0F0F;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 90%;
+  max-height: 90%;
+  display: flex;
+  flex-direction: column;
+  margin: auto;   /* center vertically */
+  z-index: 100000 !important;
+}
+
+.player-frame-wrap {
+  width: 100%;
+  height: 70vh;
+  background: #000;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  z-index: 100001 !important;
+}
+
+.player-frame-wrap iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* Close button styling */
+.close-player {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #FF00FF; /* magenta accent */
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 6px 10px;
+  z-index: 200000 !important;  /* 🚀 always above iframe */
+}
+
+.close-player:hover {
+  background: #00FF9F; /* neon green hover */
+}
+
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* spread heart and stars apart */
+  
+}
+
+.icon-heart {
+  padding: 4px;
+  font-size: 18px;
+  cursor: pointer;
+  color: var(--muted);
+}
+.icon-heart.active {
+  color: gold !important; /* red heart when clicked */
+}
+
+.cat {
+  display: none;
+}
+
+
+.stars {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  min-width: 60px; /* to keep stars from shrinking too much */
+  justify-content: flex-end; /* align stars to right within .controls */
+}
+
+
+.stars button {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: gold;
+  cursor: pointer;
+  padding: 0;
+}
+.rating-stars button {
+  margin-right: 4px;
+}
+
+
+main{padding:18px}
+.games-grid{
+  display:grid;
+  gap:14px;
+  /* default columns - responsive below */
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+}
+
+/* large screen: attempt up to 10 columns */
+@media (min-width:1600px){
+  .games-grid{ grid-template-columns: repeat(10, 1fr); }
+}
+@media (min-width:1200px) and (max-width:1599px){
+  .games-grid{ grid-template-columns: repeat(8, 1fr); }
+}
+@media (min-width:900px) and (max-width:1199px){
+  .games-grid{ grid-template-columns: repeat(6, 1fr); }
+}
+@media (min-width:600px) and (max-width:899px){
+  .games-grid{ grid-template-columns: repeat(4, 1fr); }
+}
+@media (max-width:599px){
+  .games-grid{ grid-template-columns: repeat(2, 1fr); }
+}
+
+/* card */
+.card{
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-radius:10px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,0.03);
+  display:flex;
+  flex-direction:column;
+}
+.thumb{
+  position:relative;
+  height:100px;
+  display:block;
+  background:#111;
+}
+.thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.play-overlay{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  transition:opacity .18s;
+  background:linear-gradient(180deg, rgba(0,0,0,0.0), rgba(0,0,0,0.45));
+}
+.card:hover .play-overlay{ opacity:1; }
+.play-btn{
+  background:linear-gradient(90deg,var(--accent1),var(--accent2));
+  border:none;
+  padding:8px 12px;
+  border-radius:999px;
+  color:#001;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+}
+
+/* card body */
+.card-body{ padding:8px 10px;
+ display:flex; flex-direction:column ; flex:1;background:saddlebrown; }
+.card-title{ font-size:13px; font-weight:600; color:var(--text); overflow:hidden; text-overflow:ellipsis; white-space:nowrap }
+.card-meta{ display:flex; align-items:center; justify-content:space-between; gap:8px }
+.controls{ display:flex; gap:8px; align-items:center }
+.icon-heart{
+  background:transparent;border:0;font-size:18px;cursor:pointer;color:var(--muted)
+}
+.icon-heart.active{ color:var(--accent3) }
+.stars{ display:flex; gap:2px; align-items:center }
+
+/* side panel */
+
+.side-panel {
+  background-color: #0F0F0F; /* Jet black */
+  color: #EBE8DB; /* Your off-white text */
+  width: 300px; /* Or whatever size you use */
+  padding: 20px;
+  position: fixed;
+  box-shadow: -2px 0 10px rgba(0, 255, 159, 0.6);
+  right: -420px;
+  top: 0;
+  height: 100%;
+  z-index: 1001;
+  overflow: auto;
+}
+
+.side-panel.open{ right:0; }
+.close-panel{ position:absolute; left:12px; top:12px; border:0; background:transparent; color:var(--muted); font-size:18px; cursor:pointer }
+.list{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px }
+.list li{ display:flex; gap:8px; align-items:center }
+.list img{ width:64px; height:44px; object-fit:cover; border-radius:6px; }
+
+/* modal */
+.modal{
+  position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,0.6); z-index:90;
+}
+.modal[aria-hidden="false"]{ display:flex }
+.modal-content{ width:min(1100px,96vw); background:var(--card); border-radius:10px; padding:10px; border:1px solid rgba(255,255,255,0.04) }
+.player-frame-wrap{ width:100%; height:68vh; background:#000; border-radius:6px; overflow:hidden }
+.player-frame-wrap iframe{ width:100%; height:100%; border:0; display:block; }
+.close-player{ float:right; background:transparent; border:0; color:var(--muted); cursor:pointer; font-size:18px }
+.modal-footer{ display:flex; justify-content:space-between; align-items:center; padding-top:8px }
+.modal-game-title{ font-weight:700 }
+.rating-stars button{ background:transparent; border:0; cursor:pointer; color:var(--muted); font-size:18px; margin-right:4px }
+
+/* small touches */
+footer{color:var(--muted); text-align:center; padding:24px}

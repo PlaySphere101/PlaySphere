@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Title & Description -->
+  <title>PlaySphere - Free Online Games</title>
+  <meta name="description" content="PlaySphere lets you play trending, new, and top-rated free online games instantly. Enjoy fast, fun, and free gaming experiences.">
+  <meta name="keywords" content="PlaySphere, free games, online games, play games, browser games, trending games, top rated games">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Favicon (tab icon) -->
+  <link rel="icon" type="image/png" href="icons8-games-48.png" />
+  <link rel="shortcut icon" href="icons8-games-48.png" type="image/x-icon" />
+
+  <!-- Google Search Console Verification -->
+  <meta name="google-site-verification" content="e-FjGLa9Zf_lkGxZUaZ-Q_upOGnoEeo_gDXmGlKkPAY" />
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:title" content="PlaySphere - Free Online Games" />
+  <meta property="og:description" content="Play free trending, new, and top-rated games instantly on PlaySphere." />
+  <meta property="og:image" content="https://yourusername.github.io/playsphere/logo.png" />
+  <meta property="og:url" content="https://yourusername.github.io/playsphere/" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="PlaySphere - Free Online Games" />
+  <meta name="twitter:description" content="Play free trending, new, and top-rated games instantly on PlaySphere." />
+  <meta name="twitter:image" content="https://yourusername.github.io/playsphere/logo.png" />
+</head>
+
+
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="nav-top">
+      <a href="index.html" class="brand">
+        <img src="playsphere.png" alt="PlaySphere Logo" class="logo-img">
+      </a>
+
+      <div class="nav-controls">
+        <button id="open-recent-btn" class="icon-btn" title="Recently Played & Favorites">☰</button>
+
+        <div class="search-wrap">
+          <input id="search-input" type="search" placeholder="Search games..." />
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Categories -->
+  <nav class="category-bar" id="category-bar">
+    <!-- categories populated by JS -->
+  </nav>
+
+  <!-- Games Section -->
+  <main>
+    <section class="games-section">
+      <div id="games-grid" class="games-grid" aria-live="polite">
+        <!-- game cards populated by JS -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Sidebar for Recently Played & Favorites -->
+  <aside id="side-panel" class="side-panel">
+    <button id="close-panel" class="close-panel">✕</button>
+    <h3>Recently Played</h3>
+    <ul id="recent-list" class="list"></ul>
+
+    <h3>Favorites</h3>
+    <ul id="fav-list" class="list"></ul>
+  </aside>
+
+  <!-- Modal player -->
+  <div id="player-modal" class="modal" aria-hidden="true">
+    <div class="modal-content">
+      <button id="close-player" class="close-player">✕</button>
+      <div id="player-frame-wrap" class="player-frame-wrap">
+        <iframe id="player-iframe" src="" frameborder="0" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="modal-footer">
+        <div id="modal-game-title" class="modal-game-title"></div>
+        <div class="controls">
+          <button class="icon-heart" data-id="...">♥</button>
+          <div class="stars" data-id="..."></div>
+          <button id="fullscreen-btn" title="Fullscreen">⛶</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script src="javascript.js" defer></script>
+</body>
+</html>
